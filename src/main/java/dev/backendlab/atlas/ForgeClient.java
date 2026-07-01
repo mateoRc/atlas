@@ -26,14 +26,20 @@ class ForgeClient {
                 .build();
     }
 
-    void recordSearch(long durationMs, int exitCode) {
+    void send(TelemetryEvent event) {
         if (eventsUri == null) {
             return;
         }
 
         String body = """
-                {"service":"atlas","event":"search.executed","name":"search","duration_ms":%d,"exit_code":%d}"""
-                .formatted(durationMs, exitCode);
+                {"service":"%s","event":"%s","name":"%s","duration_ms":%d,"exit_code":%d}"""
+                .formatted(
+                        event.service(),
+                        event.event(),
+                        event.name(),
+                        event.durationMs(),
+                        event.exitCode()
+                );
         HttpRequest request = HttpRequest.newBuilder(eventsUri)
                 .timeout(TIMEOUT)
                 .header("Content-Type", "application/json")
@@ -47,4 +53,3 @@ class ForgeClient {
         }
     }
 }
-

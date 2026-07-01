@@ -12,11 +12,11 @@ import java.time.Duration;
 class SearchController {
 
     private final SearchService searchService;
-    private final ForgeClient forgeClient;
+    private final TelemetryDispatcher telemetry;
 
-    SearchController(SearchService searchService, ForgeClient forgeClient) {
+    SearchController(SearchService searchService, TelemetryDispatcher telemetry) {
         this.searchService = searchService;
-        this.forgeClient = forgeClient;
+        this.telemetry = telemetry;
     }
 
     @GetMapping("/search")
@@ -34,7 +34,7 @@ class SearchController {
             throw exception;
         } finally {
             long durationMs = Duration.ofNanos(System.nanoTime() - started).toMillis();
-            forgeClient.recordSearch(durationMs, exitCode);
+            telemetry.recordSearch(durationMs, exitCode);
         }
     }
 }
