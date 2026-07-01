@@ -37,7 +37,7 @@
 - [x] Container health check
 - [x] Mount local `content/` at `/content` as read-only
 - [x] Document API usage
-- [ ] GitHub Actions CI
+- [x] GitHub Actions CI
 
 ## After MVP
 
