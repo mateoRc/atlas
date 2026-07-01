@@ -6,7 +6,7 @@
 
 - [x] Spring Boot HTTP service
 - [x] Docker image
-- [x] Docker Compose
+- [x] Shared Docker Compose in `lab`
 - [x] `GET /healthz`
 
 ### Content
@@ -35,7 +35,7 @@
 
 - [x] Docker-only local setup
 - [x] Container health check
-- [x] Mount local `content/` at `/content` as read-only
+- [x] Mount shared content at `/app/content` as read-only
 - [x] Document API usage
 - [x] GitHub Actions CI
 

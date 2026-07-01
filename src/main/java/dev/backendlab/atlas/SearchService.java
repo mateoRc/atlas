@@ -19,7 +19,7 @@ class SearchService {
 
     private final Path contentRoot;
 
-    SearchService(@Value("${atlas.content-root:/content}") Path contentRoot) {
+    SearchService(@Value("${atlas.content-root:/app/content}") Path contentRoot) {
         this.contentRoot = contentRoot.toAbsolutePath().normalize();
     }
 
@@ -62,4 +62,3 @@ class SearchService {
         return "/" + contentRoot.relativize(path).toString().replace('\\', '/');
     }
 }
-
