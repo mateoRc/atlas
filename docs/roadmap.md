@@ -11,32 +11,32 @@
 
 ### Content
 
-- [ ] Load plain text files from `/content`
-- [ ] Recursively discover files
-- [ ] Treat content as read-only
+- [x] Load plain text files from `/content`
+- [x] Recursively discover files
+- [x] Treat content as read-only
 
 ### Search
 
-- [ ] `GET /search?q=<query>`
-- [ ] Case-insensitive line scan
-- [ ] Return file path, line number, and line text
-- [ ] Return query, result count, and results as JSON
-- [ ] Validate missing and blank queries
+- [x] `GET /search?q=<query>`
+- [x] Case-insensitive line scan
+- [x] Return file path, line number, and line text
+- [x] Return query, result count, and results as JSON
+- [x] Validate missing and blank queries
 
 ### Tests
 
 - [x] Health endpoint unit test
-- [ ] Content scanning tests
-- [ ] Search API tests
-- [ ] Empty-result test
-- [ ] Query validation tests
+- [x] Content scanning tests
+- [x] Search API tests
+- [x] Empty-result test
+- [x] Query validation tests
 
 ### Developer Experience
 
 - [x] Docker-only local setup
 - [x] Container health check
-- [ ] Mount local `content/` at `/content` as read-only
-- [ ] Document API usage
+- [x] Mount local `content/` at `/content` as read-only
+- [x] Document API usage
 - [ ] GitHub Actions CI
 
 ## After MVP
@@ -57,4 +57,3 @@
 - Queues and asynchronous events
 - Anvil integration
 - Forge telemetry
-
