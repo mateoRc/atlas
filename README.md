@@ -1,7 +1,7 @@
 # Atlas
 
-Atlas is the HTTP indexing and search service for Vault. This initial version
-only provides a health endpoint.
+Atlas is the HTTP indexing and search service for Vault. It scans shared
+content and emits best-effort search telemetry to Forge.
 
 ## Run locally
 
