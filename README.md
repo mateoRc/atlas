@@ -39,4 +39,5 @@ docker build --target build .
 
 ## Documentation
 
-- [Roadmap](docs/roadmap.md)
+Long-form documentation and the Atlas roadmap are maintained in the sibling
+`lab` repository under `content/docs/`.

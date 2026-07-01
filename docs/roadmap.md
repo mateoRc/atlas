@@ -55,5 +55,5 @@
 - Embeddings
 - External search libraries
 - Queues and asynchronous events
-- Anvil integration
-- Forge telemetry
+- Anvil* integration
+- Forge* telemetry
