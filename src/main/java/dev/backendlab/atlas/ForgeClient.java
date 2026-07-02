@@ -15,12 +15,17 @@ class ForgeClient {
     private static final Duration TIMEOUT = Duration.ofMillis(300);
 
     private final URI eventsUri;
+    private final String authToken;
     private final HttpClient httpClient;
 
-    ForgeClient(@Value("${forge.url:}") String forgeUrl) {
+    ForgeClient(
+            @Value("${forge.url:}") String forgeUrl,
+            @Value("${forge.auth-token}") String authToken
+    ) {
         this.eventsUri = forgeUrl.isBlank()
                 ? null
                 : URI.create(forgeUrl.replaceAll("/+$", "") + "/events");
+        this.authToken = authToken;
         this.httpClient = HttpClient.newBuilder()
                 .connectTimeout(TIMEOUT)
                 .build();
@@ -42,6 +47,7 @@ class ForgeClient {
                 );
         HttpRequest request = HttpRequest.newBuilder(eventsUri)
                 .timeout(TIMEOUT)
+                .header("Authorization", "Bearer " + authToken)
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .build();

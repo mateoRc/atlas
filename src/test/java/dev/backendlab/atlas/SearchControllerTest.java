@@ -13,7 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        properties = "atlas.content-root=src/test/resources/content"
+        properties = {
+                "atlas.content-root=src/test/resources/content",
+                "atlas.auth-token=test-atlas-token",
+                "forge.auth-token=test-forge-token"
+        }
 )
 class SearchControllerTest {
 
@@ -44,13 +48,28 @@ class SearchControllerTest {
         assertThat(get("/search").statusCode()).isEqualTo(400);
     }
 
+    @Test
+    void rejectsMissingAuthentication() throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:" + port + "/search?q=kafka"))
+                .GET()
+                .build();
+
+        HttpResponse<String> response = HttpClient.newHttpClient()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        assertThat(response.statusCode()).isEqualTo(401);
+        assertThat(response.headers().firstValue("www-authenticate"))
+                .contains("Bearer");
+    }
+
     private HttpResponse<String> get(String path) throws Exception {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:" + port + path))
+                .header("Authorization", "Bearer test-atlas-token")
                 .GET()
                 .build();
 
         return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
     }
 }
-

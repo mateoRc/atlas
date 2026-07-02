@@ -14,7 +14,7 @@ class TelemetryDispatcherTest {
     void deliversTelemetryInBackground() throws Exception {
         CountDownLatch delivered = new CountDownLatch(1);
         AtomicReference<TelemetryEvent> received = new AtomicReference<>();
-        ForgeClient client = new ForgeClient("") {
+        ForgeClient client = new ForgeClient("", "test-forge-token") {
             @Override
             void send(TelemetryEvent event) {
                 received.set(event);
@@ -32,4 +32,3 @@ class TelemetryDispatcherTest {
         dispatcher.close();
     }
 }
-
