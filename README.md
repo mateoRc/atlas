@@ -27,6 +27,38 @@ Search the plain text files under `content/`:
 curl "http://localhost:8081/search?q=kafka"
 ```
 
+Example response:
+
+```json
+{
+  "query": "kafka",
+  "count": 1,
+  "results": [
+    {
+      "path": "cv/skills.txt",
+      "line_number": 35,
+      "line": "messaging: Kafka"
+    }
+  ]
+}
+```
+
+Search is case-insensitive and accepts URL-encoded phrases:
+
+```sh
+curl "http://localhost:8081/search?q=BACKEND"
+curl "http://localhost:8081/search?q=distributed%20systems"
+curl "http://localhost:8081/search?q=Spring%20Boot"
+```
+
+Useful checks:
+
+```sh
+curl -i http://localhost:8081/healthz
+curl -i "http://localhost:8081/search?q="
+curl "http://localhost:8081/search?q=term-that-does-not-exist"
+```
+
 Atlas recursively scans `ATLAS_CONTENT_ROOT`, which defaults to
 `/app/content`, and returns matching paths, one-based line numbers, and line
 text as JSON. Queries are case-insensitive.
