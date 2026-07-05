@@ -10,10 +10,13 @@ RUN mvn --batch-mode package
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
+ARG VERSION=dev
+LABEL org.opencontainers.image.title="Atlas" \
+      org.opencontainers.image.version="${VERSION}"
+
 RUN addgroup -S atlas && adduser -S atlas -G atlas
 COPY --from=build --chown=atlas:atlas /workspace/target/atlas-*.jar app.jar
 
 USER atlas
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
-
