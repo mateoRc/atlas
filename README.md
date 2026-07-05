@@ -1,6 +1,6 @@
 # Atlas
 
-Atlas is the HTTP indexing and search service for Vault. It scans shared
+Atlas is the HTTP search service for Vaultsh. It scans shared raw Markdown
 content and emits best-effort search telemetry to Forge.
 
 ## Run
@@ -19,18 +19,18 @@ Direct search example:
 
 ```sh
 curl -H "Authorization: Bearer $ATLAS_AUTH_TOKEN" \
-  "http://localhost:8081/search?q=messaging%3A%20Kafka"
+  "http://localhost:8081/search?q=Kafka"
 ```
 
 ```json
 {
-  "query": "messaging: Kafka",
+  "query": "Kafka",
   "count": 1,
   "results": [
     {
       "path": "/cv/skills.md",
-      "line_number": 35,
-      "line": "messaging: Kafka"
+      "line_number": 10,
+      "line": "- **Messaging:** Kafka and RabbitMQ"
     }
   ]
 }
