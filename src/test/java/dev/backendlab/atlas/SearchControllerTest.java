@@ -34,7 +34,7 @@ class SearchControllerTest {
         );
         assertThat(response.body()).isEqualTo(
                 """
-                {"query":"KAFKA","count":1,"results":[{"path":"/cv/skills.txt","line_number":2,"line":"messaging: Kafka"}]}"""
+                {"query":"KAFKA","count":1,"results":[{"path":"/cv/skills.md","line_number":2,"line":"messaging: Kafka"}]}"""
         );
     }
 

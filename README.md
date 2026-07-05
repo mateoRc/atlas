@@ -28,7 +28,7 @@ curl -H "Authorization: Bearer $ATLAS_AUTH_TOKEN" \
   "count": 1,
   "results": [
     {
-      "path": "/cv/skills.txt",
+      "path": "/cv/skills.md",
       "line_number": 35,
       "line": "messaging: Kafka"
     }
