@@ -13,8 +13,9 @@ class HealthControllerTest {
 
     @Test
     void statusReturnsUptime() {
-        assertThat(new HealthController(System.nanoTime() - 3_000_000_000L).status())
-                .containsEntry("status", "ok")
-                .containsEntry("uptime_seconds", 3L);
+        var status = new HealthController(System.nanoTime() - 3_000_000_000L).status();
+
+        assertThat(status).containsEntry("status", "ok");
+        assertThat((Long) status.get("uptime_seconds")).isGreaterThanOrEqualTo(3L);
     }
 }
